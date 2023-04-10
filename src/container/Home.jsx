@@ -66,8 +66,8 @@ function Home() {
                   setToggleSidebar(false);
                 }}
               />
-              <Sidebar user={user && user} closeToggle={setToggleSidebar} />
             </div>
+            <Sidebar user={user && user} closeToggle={setToggleSidebar} />
           </div>
         )}
       </div>
