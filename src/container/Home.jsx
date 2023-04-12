@@ -26,7 +26,7 @@ function Home() {
     // console.log(query);
 
     client.fetch(query).then((data) => {
-      console.log(data);
+      // console.log(data);
       setUser(data[0]);
     });
   }, []);

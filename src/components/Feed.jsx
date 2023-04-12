@@ -9,16 +9,19 @@ function Feed() {
   const [loading, setLoading] = useState(false);
   const [pins, setPins] = useState(null);
   const { categoryId } = useParams();
+  //   console.log(categoryId);
   useEffect(() => {
     setLoading(true);
     if (categoryId) {
       const query = searchQuery(categoryId);
       client.fetch(query).then((data) => {
+        // console.log(data);
         setPins(data);
         setLoading(false);
       });
     } else {
       client.fetch(feedQuery).then((data) => {
+        console.log(data);
         setPins(data);
         setLoading(false);
       });
@@ -28,7 +31,7 @@ function Feed() {
   if (loading)
     return <Spinner message="We are adding new ideas to your feed!" />;
 
-  return <div>{pins && <MasonryLayout />}</div>;
+  return <div>{pins && <MasonryLayout pins={pins} />}</div>;
 }
 
 export default Feed;

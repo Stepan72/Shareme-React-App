@@ -3,7 +3,7 @@ import { IoMdAdd, IoMdSearch } from "react-icons/io";
 
 function Navbar({ searchTerm, setSearchTerm, user }) {
   const navigate = useNavigate();
-  console.log(user);
+  //   console.log(user);
 
   function onChangeHandler(e) {
     setSearchTerm(e.target.value);
