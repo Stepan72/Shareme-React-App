@@ -13,7 +13,7 @@ function Login() {
   const navigate = useNavigate();
 
   async function clickHandler(response) {
-    // console.log(response);
+    console.log(response);
     localStorage.setItem(
       "user",
       JSON.stringify({

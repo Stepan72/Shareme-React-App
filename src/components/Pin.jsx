@@ -13,25 +13,28 @@ function Pin({ pin }) {
   const [savingPost, setSavingPost] = useState(false);
   const navigate = useNavigate();
   const user = fetchUser();
+  //   console.log(uuidv4());
+  const check = true;
 
   const alreadySaved = !!save?.filter((item) => {
-    return item.postedBy._id === user.googleId;
+    return item.postedBy._id === user.userId;
   })?.length;
+  console.log(postedBy);
 
   const savePin = (id) => {
     if (!alreadySaved) {
       setSavingPost(true);
-
+      //   console.log(alreadySaved);
       client
         .patch(id)
         .setIfMissing({ save: [] })
-        .insert("after", "save[-1", [
+        .insert("after", "save[-1]", [
           {
             _key: uuidv4(),
-            userId: user.googleId,
+            userId: user.userId,
             postedBy: {
               _type: "postedBy",
-              _ref: user.googleId,
+              _ref: user.userId,
             },
           },
         ])
@@ -41,6 +44,12 @@ function Pin({ pin }) {
           setSavingPost(false);
         });
     }
+  };
+
+  const deletePin = (id) => {
+    client.delete(id).then(() => {
+      window.location.reload();
+    });
   };
 
   //   console.log(alreadySaved);
@@ -98,7 +107,34 @@ function Pin({ pin }) {
                     savePin(_id);
                   }}
                 >
-                  Save
+                  {savingPost ? "saving" : "Save"}
+                </button>
+              )}
+            </div>
+            <div className="flex justify-between items-center gap-2 w-full">
+              {destination && (
+                <a
+                  href={destination}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="bg-white flex items-center gap-2 text-black font-bold p-2 pl-4 pr-4 rounded-full opacity-70 hover:opacity-100 hover:shadow-md"
+                >
+                  <BsFillArrowUpRightCircleFill />
+                  {destination.length > 20
+                    ? destination.slice(8, 20)
+                    : destination.slice(8)}
+                </a>
+              )}
+              {postedBy?._id === user.userId && (
+                <button
+                  type="button"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    deletePin(_id);
+                  }}
+                  className="bg-red-500 opacity-70 hover:opacity-100 text-white font-bold px-5 py-1 text-base rounded-3xl hover:shadow-md outlined-none"
+                >
+                  Delete
                 </button>
               )}
             </div>
