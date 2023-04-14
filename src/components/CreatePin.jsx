@@ -9,7 +9,7 @@ import Spinner from "./Spinner";
 import { categories } from "../utils/data";
 // categories [{ name: "sports" , image: {}}]
 
-function CreatePin() {
+function CreatePin({ user }) {
   const [title, setTitle] = useState("");
   const [about, setAbout] = useState("");
   const [destination, setDestination] = useState("");
@@ -19,6 +19,8 @@ function CreatePin() {
   const [imageAsset, setImageAsset] = useState(null);
   const [wrongImageType, setWrongImageType] = useState(false);
   const navigate = useNavigate();
+
+  console.log(user);
 
   function uploadImage(e) {
     const { type, name } = e.target.files[0];
@@ -82,9 +84,45 @@ function CreatePin() {
                 />
               </label>
             ) : (
-              <p>Something else</p>
+              <div className="relative h-full">
+                <img
+                  src={imageAsset?.url}
+                  alt="uploaded-pic"
+                  className="h-full w-full"
+                />
+                <button
+                  type="button"
+                  className="absolute bottom-3 right-3 p-3 rounded-full bg-white text-xl cursor-pointer outline-none hover:shadow-md transition-all duration-500 ease-in-out"
+                  onClick={() => {
+                    setImageAsset(null);
+                  }}
+                >
+                  <MdDelete />
+                </button>
+              </div>
             )}
           </div>
+        </div>
+        <div className="flex flex-1 flex-col gap-6 lg:pl-5 mt-5 w-full">
+          <input
+            type="text"
+            value={title}
+            onChange={(e) => {
+              setTitle(e.target.value);
+            }}
+            placeholder="Add your title here"
+            className="outline-none text-2xl sm:text-3xl font-bold border-b-2 border-gray-200 p-2"
+          />
+          {user && (
+            <div className="flex gap-2 my-2 items-center bg-white rounded-lg ">
+              <img
+                src={user.image}
+                className="w-10 h-10 rounded-full"
+                alt="user-profile"
+              />
+              <p className="font-bold"> {user.userName}</p>
+            </div>
+          )}
         </div>
       </div>
     </div>
