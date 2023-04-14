@@ -63,6 +63,14 @@ function PinDetail({ user }) {
               <MdDownloadForOffline />
             </a>
           </div>
+          <a href={pinDetail.destination} target="_blank" rel="noreferrer">
+            {pinDetail.destination}
+          </a>
+        </div>
+        <div>
+          <h1 className="text-4xl font-bold break-words mt-3">
+            {pinDetail.title}
+          </h1>
         </div>
       </div>
     </div>
