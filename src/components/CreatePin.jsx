@@ -30,7 +30,8 @@ function CreatePin({ user }) {
       type === "image/svg" ||
       type === "image/jpeg" ||
       type === "image/gif" ||
-      type === "image/tiff"
+      type === "image/tiff" ||
+      type === "image/heic"
     ) {
       setWrongImageType(false);
       setLoading(true);
