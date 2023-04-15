@@ -20,7 +20,7 @@ function CreatePin({ user }) {
   const [wrongImageType, setWrongImageType] = useState(false);
   const navigate = useNavigate();
 
-  console.log(user);
+  // console.log(user);
 
   function uploadImage(e) {
     const { type, name } = e.target.files[0];

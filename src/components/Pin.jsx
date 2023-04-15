@@ -117,10 +117,11 @@ function Pin({ pin }) {
                   href={destination}
                   target="_blank"
                   rel="noreferrer"
-                  className="bg-white flex items-center gap-2 text-black font-bold p-2 pl-4 pr-4 rounded-full opacity-70 hover:opacity-100 hover:shadow-md"
+                  className="bg-white flex items-center gap-2 text-black  font-bold p-2 pl-4 pr-4 rounded-full opacity-70 hover:opacity-100 hover:shadow-md"
+                  style={{ fontSize: "10px" }}
                 >
                   <BsFillArrowUpRightCircleFill />
-                  {destination.length > 15
+                  {destination.length > 20
                     ? `${destination.slice(0, 15)}...`
                     : destination}
                 </a>
