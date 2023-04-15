@@ -17,7 +17,7 @@ function Pin({ pin }) {
   const check = true;
 
   const alreadySaved = !!save?.filter((item) => {
-    return item.postedBy._id === user?.userId;
+    return item?.postedBy?._id === user?.userId;
   })?.length;
   //   console.log(postedBy);
 
