@@ -20,15 +20,6 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    const user = fetchUser();
-    if (!user) {
-      navigate("/login");
-    }
-  }, []);
-
   return (
     <>
       <RouterProvider router={router} />

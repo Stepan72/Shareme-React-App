@@ -10,14 +10,24 @@ import { client } from "../client";
 import logo from "./../assets/logo.png";
 import Pins from "./Pins";
 import { fetchUser } from "../utils/fetchUser";
+import { useNavigate } from "react-router-dom";
 
 function Home() {
+  const navigate = useNavigate();
+
   const [toggleSidebar, setToggleSidebar] = useState(false);
   const [user, setUser] = useState(null);
   const scrollRef = useRef(null);
 
   const userInfo = fetchUser();
   // console.log(user);
+
+  useEffect(() => {
+    const user = fetchUser();
+    if (!user) {
+      navigate("/login");
+    }
+  }, []);
 
   useEffect(() => {
     const query = userQuery(userInfo?.userId);
