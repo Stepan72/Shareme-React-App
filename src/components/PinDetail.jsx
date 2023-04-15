@@ -14,7 +14,8 @@ function PinDetail({ user }) {
   const [addingComment, setAddingComment] = useState(false);
   const { pinId } = useParams();
 
-  console.log(user);
+  // console.log(user);
+  // console.log(pinDetail);
 
   const fetchPinDetails = useCallback(() => {
     let query = pinDetailQuery(pinId);
@@ -141,7 +142,7 @@ function PinDetail({ user }) {
             <Link to={`/user-profile/${pinDetail.postedBy?._id}`}>
               <img
                 className="w-10 h-10 rounded-full cursor-pointer"
-                src={pinDetail.postedBy?.image}
+                src={user?.image}
                 alt="user-profile"
               />
             </Link>
