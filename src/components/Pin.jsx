@@ -17,7 +17,7 @@ function Pin({ pin }) {
   const check = true;
 
   const alreadySaved = !!save?.filter((item) => {
-    return item.postedBy._id === user.userId;
+    return item.postedBy._id === user?.userId;
   })?.length;
   //   console.log(postedBy);
 
@@ -31,10 +31,10 @@ function Pin({ pin }) {
         .insert("after", "save[-1]", [
           {
             _key: uuidv4(),
-            userId: user.userId,
+            userId: user?.userId,
             postedBy: {
               _type: "postedBy",
-              _ref: user.userId,
+              _ref: user?.userId,
             },
           },
         ])
@@ -126,7 +126,7 @@ function Pin({ pin }) {
                     : destination}
                 </a>
               )}
-              {postedBy?._id === user.userId && (
+              {postedBy?._id === user?.userId && (
                 <button
                   type="button"
                   onClick={(e) => {

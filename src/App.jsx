@@ -1,7 +1,12 @@
-import React from "react";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import React, { useEffect } from "react";
+import {
+  createBrowserRouter,
+  RouterProvider,
+  useNavigate,
+} from "react-router-dom";
 import Home from "./container/Home";
 import Login from "./components/Login";
+import { fetchUser } from "./utils/fetchUser";
 
 const router = createBrowserRouter([
   {
@@ -15,6 +20,15 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const user = fetchUser();
+    if (!user) {
+      navigate("/login");
+    }
+  }, []);
+
   return (
     <>
       <RouterProvider router={router} />
