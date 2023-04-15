@@ -48,13 +48,13 @@ function UserProfile() {
     if (text === "Created") {
       const createdPinsQuery = userCreatedPinsQuery(userId);
       client.fetch(createdPinsQuery).then((data) => {
-        console.log(data);
+        // console.log(data);
         setPins(data);
       });
     } else {
       const savedPinsQuery = userSavedPinsQuery(userId);
       client.fetch(savedPinsQuery).then((data) => {
-        console.log(data);
+        // console.log(data);
         setPins(data);
       });
     }
